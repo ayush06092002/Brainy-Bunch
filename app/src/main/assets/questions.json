@@ -1,0 +1,352 @@
+{
+  "quiz": [
+    {
+      "question": "What is the capital of France?",
+      "category": "Geography",
+      "answer": "Paris",
+      "choices": ["London", "Berlin", "Paris", "Rome"]
+    },
+    {
+      "question": "Who wrote 'To Kill a Mockingbird'?",
+      "category": "Literature",
+      "answer": "Harper Lee",
+      "choices": ["J.K. Rowling", "Harper Lee", "Charles Dickens", "Ernest Hemingway"]
+    },
+    {
+      "question": "Which planet is known as the Red Planet?",
+      "category": "Science",
+      "answer": "Mars",
+      "choices": ["Jupiter", "Mars", "Saturn", "Neptune"]
+    },
+    {
+      "question": "Who painted the Mona Lisa?",
+      "category": "Art",
+      "answer": "Leonardo da Vinci",
+      "choices": ["Pablo Picasso", "Vincent van Gogh", "Leonardo da Vinci", "Claude Monet"]
+    },
+    {
+      "question": "What is the largest ocean on Earth?",
+      "category": "Geography",
+      "answer": "Pacific Ocean",
+      "choices": ["Atlantic Ocean", "Indian Ocean", "Arctic Ocean", "Pacific Ocean"]
+    },
+    {
+      "question": "Which country is known as the Land of the Rising Sun?",
+      "category": "Geography",
+      "answer": "Japan",
+      "choices": ["China", "India", "Japan", "Australia"]
+    },
+    {
+      "question": "Who discovered penicillin?",
+      "category": "Science",
+      "answer": "Alexander Fleming",
+      "choices": ["Marie Curie", "Isaac Newton", "Alexander Fleming", "Albert Einstein"]
+    },
+    {
+      "question": "Who wrote '1984'?",
+      "category": "Literature",
+      "answer": "George Orwell",
+      "choices": ["George Orwell", "F. Scott Fitzgerald", "Ernest Hemingway", "J.K. Rowling"]
+    },
+    {
+      "question": "What is the chemical symbol for water?",
+      "category": "Science",
+      "answer": "H2O",
+      "choices": ["CO2", "H2O", "O2", "NaCl"]
+    },
+    {
+      "question": "Who was the first woman to win a Nobel Prize?",
+      "category": "History",
+      "answer": "Marie Curie",
+      "choices": ["Rosa Parks", "Marie Curie", "Margaret Thatcher", "Mother Teresa"]
+    },
+    {
+      "question": "In which year did the Titanic sink?",
+      "category": "History",
+      "answer": "1912",
+      "choices": ["1905", "1912", "1921", "1930"]
+    },
+    {
+      "question": "What is the largest mammal in the world?",
+      "category": "Science",
+      "answer": "Blue Whale",
+      "choices": ["Elephant", "Giraffe", "Blue Whale", "Hippopotamus"]
+    },
+    {
+      "question": "Who wrote the play 'Romeo and Juliet'?",
+      "category": "Literature",
+      "answer": "William Shakespeare",
+      "choices": ["William Wordsworth", "Jane Austen", "William Shakespeare", "Mark Twain"]
+    },
+    {
+      "question": "What is the tallest mountain in the world?",
+      "category": "Geography",
+      "answer": "Mount Everest",
+      "choices": ["Mount Kilimanjaro", "Mount Everest", "K2", "Matterhorn"]
+    },
+    {
+      "question": "Which gas do plants absorb for photosynthesis?",
+      "category": "Science",
+      "answer": "Carbon dioxide",
+      "choices": ["Oxygen", "Carbon dioxide", "Nitrogen", "Methane"]
+    },
+    {
+      "question": "Who painted 'The Starry Night'?",
+      "category": "Art",
+      "answer": "Vincent van Gogh",
+      "choices": ["Leonardo da Vinci", "Vincent van Gogh", "Pablo Picasso", "Claude Monet"]
+    },
+    {
+      "question": "Which organ is responsible for filtering blood in the human body?",
+      "category": "Science",
+      "answer": "Kidneys",
+      "choices": ["Liver", "Kidneys", "Lungs", "Heart"]
+    },
+    {
+      "question": "What is the currency of Japan?",
+      "category": "Geography",
+      "answer": "Yen",
+      "choices": ["Yuan", "Yen", "Euro", "Dollar"]
+    },
+    {
+      "question": "Who developed the theory of relativity?",
+      "category": "Science",
+      "answer": "Albert Einstein",
+      "choices": ["Isaac Newton", "Albert Einstein", "Stephen Hawking", "Nikola Tesla"]
+    },
+    {
+      "question": "Who is known as the father of modern physics?",
+      "category": "Science",
+      "answer": "Albert Einstein",
+      "choices": ["Isaac Newton", "Galileo Galilei", "Albert Einstein", "Nikola Tesla"]
+    },
+    {
+      "question": "Which famous scientist formulated the three laws of motion?",
+      "category": "Science",
+      "answer": "Isaac Newton",
+      "choices": ["Galileo Galilei", "Isaac Newton", "Albert Einstein", "Stephen Hawking"]
+    },
+    {
+      "question": "Which country is the largest by land area?",
+      "category": "Geography",
+      "answer": "Russia",
+      "choices": ["China", "Canada", "Russia", "United States"]
+    },
+    {
+      "question": "Who wrote 'Pride and Prejudice'?",
+      "category": "Literature",
+      "answer": "Jane Austen",
+      "choices": ["Emily Bronte", "Jane Austen", "Charlotte Bronte", "Virginia Woolf"]
+    },
+    {
+      "question": "What is the chemical symbol for gold?",
+      "category": "Science",
+      "answer": "Au",
+      "choices": ["Ag", "Au", "Fe", "Cu"]
+    },
+    {
+      "question": "Who painted 'The Last Supper'?",
+      "category": "Art",
+      "answer": "Leonardo da Vinci",
+      "choices": ["Pablo Picasso", "Vincent van Gogh", "Leonardo da Vinci", "Claude Monet"]
+    },
+    {
+      "question": "What is the largest desert in the world?",
+      "category": "Geography",
+      "answer": "Sahara Desert",
+      "choices": ["Gobi Desert", "Sahara Desert", "Arabian Desert", "Kalahari Desert"]
+    },
+    {
+      "question": "Who discovered the theory of evolution?",
+      "category": "Science",
+      "answer": "Charles Darwin",
+      "choices": ["Isaac Newton", "Albert Einstein", "Charles Darwin", "Stephen Hawking"]
+    },
+    {
+      "question": "Who wrote 'The Great Gatsby'?",
+      "category": "Literature",
+      "answer": "F. Scott Fitzgerald",
+      "choices": ["Ernest Hemingway", "F. Scott Fitzgerald", "J.D. Salinger", "Mark Twain"]
+    },
+    {
+      "question": "What is the chemical symbol for oxygen?",
+      "category": "Science",
+      "answer": "O",
+      "choices": ["O", "O2", "CO2", "H2O"]
+    },
+    {
+      "question": "Who painted 'The Scream'?",
+      "category": "Art",
+      "answer": "Edvard Munch",
+      "choices": ["Pablo Picasso", "Vincent van Gogh", "Edvard Munch", "Claude Monet"]
+    },
+    {
+      "question": "What is the smallest country in the world?",
+      "category": "Geography",
+      "answer": "Vatican City",
+        "choices": ["Monaco", "San Marino", "Vatican City", "Nauru"]
+    },
+    {
+      "question": "Who is credited with discovering gravity after seeing an apple fall from a tree?",
+      "category": "Science",
+      "answer": "Isaac Newton",
+      "choices": ["Albert Einstein", "Galileo Galilei", "Isaac Newton", "Nikola Tesla"]
+    },
+    {
+      "question": "Which famous scientist developed the theory of evolution by natural selection?",
+      "category": "Science",
+      "answer": "Charles Darwin",
+      "choices": ["Isaac Newton", "Albert Einstein", "Charles Darwin", "Gregor Mendel"]
+    },
+    {
+      "question": "Who is the author of the 'Harry Potter' book series?",
+      "category": "Literature",
+      "answer": "J.K. Rowling",
+      "choices": ["J.R.R. Tolkien", "J.K. Rowling", "C.S. Lewis", "Stephen King"]
+    },
+    {
+      "question": "What is the chemical symbol for gold?",
+      "category": "Science",
+      "answer": "Au",
+      "choices": ["Ag", "Fe", "Au", "Cu"]
+    },
+    {
+      "question": "Which famous artist is known for painting the 'Sistine Chapel Ceiling'?",
+      "category": "Art",
+      "answer": "Michelangelo",
+      "choices": ["Leonardo da Vinci", "Vincent van Gogh", "Pablo Picasso", "Michelangelo"]
+    },
+    {
+      "question": "What is the capital of Canada?",
+      "category": "Geography",
+      "answer": "Ottawa",
+      "choices": ["Toronto", "Montreal", "Vancouver", "Ottawa"]
+    },
+    {
+      "question": "Who was the first person to step on the moon?",
+      "category": "Science",
+      "answer": "Neil Armstrong",
+      "choices": ["Buzz Aldrin", "Yuri Gagarin", "Neil Armstrong", "John Glenn"]
+    },
+    {
+      "question": "Which planet is known as the 'Morning Star' or 'Evening Star'?",
+      "category": "Science",
+      "answer": "Venus",
+      "choices": ["Mercury", "Venus", "Mars", "Jupiter"]
+    },
+    {
+      "question": "Who is the current president of the United States?",
+      "category": "Politics",
+      "answer": "Joe Biden",
+      "choices": ["Donald Trump", "Joe Biden", "Barack Obama", "Hillary Clinton"]
+    },
+    {
+      "question": "What is the largest desert in the world?",
+      "category": "Geography",
+      "answer": "Antarctica",
+      "choices": ["Sahara Desert", "Arabian Desert", "Gobi Desert", "Antarctica"]
+    },
+    {
+      "question": "Who wrote 'The Catcher in the Rye'?",
+      "category": "Literature",
+      "answer": "J.D. Salinger",
+      "choices": ["F. Scott Fitzgerald", "J.D. Salinger", "Ernest Hemingway", "Mark Twain"]
+    },
+    {
+      "question": "What is the chemical symbol for silver?",
+      "category": "Science",
+      "answer": "Ag",
+      "choices": ["Au", "Ag", "Fe", "Cu"]
+    },
+    {
+      "question": "Who painted 'The Persistence of Memory'?",
+      "category": "Art",
+      "answer": "Salvador Dali",
+      "choices": ["Pablo Picasso", "Vincent van Gogh", "Salvador Dali", "Claude Monet"]
+    },
+    {
+      "question": "What is the capital of Australia?",
+      "category": "Geography",
+      "answer": "Canberra",
+      "choices": ["Sydney", "Melbourne", "Brisbane", "Canberra"]
+    },
+    {
+      "question": "Who is known as the 'Father of the Computer'?",
+      "category": "Science",
+      "answer": "Charles Babbage",
+      "choices": ["Alan Turing", "Charles Babbage", "Ada Lovelace", "John von Neumann"]
+    },
+    {
+      "question": "Who is the author of 'The Great Gatsby'?",
+      "category": "Literature",
+      "answer": "F. Scott Fitzgerald",
+      "choices": ["Ernest Hemingway", "F. Scott Fitzgerald", "John Steinbeck", "Mark Twain"]
+    },
+    {
+      "question": "What is the capital of Australia?",
+      "category": "Geography",
+      "answer": "Canberra",
+      "choices": ["Sydney", "Melbourne", "Canberra", "Perth"]
+    },
+    {
+      "question": "Who invented the telephone?",
+      "category": "Science",
+      "answer": "Alexander Graham Bell",
+      "choices": ["Thomas Edison", "Alexander Graham Bell", "Nikola Tesla", "Albert Einstein"]
+    },
+    {
+      "question": "Which city is known as the 'City of Love'?",
+      "category": "Geography",
+      "answer": "Paris",
+      "choices": ["Rome", "Venice", "Paris", "Florence"]
+    },
+    {
+      "question": "Who is the protagonist in J.R.R. Tolkien's 'The Lord of the Rings' trilogy?",
+      "category": "Literature",
+      "answer": "Frodo Baggins",
+      "choices": ["Aragorn", "Gandalf", "Frodo Baggins", "Bilbo Baggins"]
+    },
+    {
+      "question": "What is the chemical symbol for iron?",
+      "category": "Science",
+      "answer": "Fe",
+      "choices": ["Ag", "Au", "Fe", "Cu"]
+    },
+    {
+      "question": "Which planet is closest to the sun?",
+      "category": "Science",
+      "answer": "Mercury",
+      "choices": ["Venus", "Earth", "Mars", "Mercury"]
+    },
+    {
+      "question": "Who was the first woman to fly solo across the Atlantic Ocean?",
+      "category": "History",
+      "answer": "Amelia Earhart",
+      "choices": ["Bessie Coleman", "Amelia Earhart", "Sally Ride", "Jacqueline Cochran"]
+    },
+    {
+      "question": "What is the largest species of big cat in the world?",
+      "category": "Science",
+      "answer": "Tiger",
+      "choices": ["Lion", "Tiger", "Leopard", "Jaguar"]
+    },
+    {
+      "question": "Who painted 'The Persistence of Memory', featuring melting clocks?",
+      "category": "Art",
+      "answer": "Salvador Dali",
+      "choices": ["Pablo Picasso", "Vincent van Gogh", "Salvador Dali", "Claude Monet"]
+    },
+    {
+      "question": "What is the capital of Brazil?",
+      "category": "Geography",
+      "answer": "Brasilia",
+      "choices": ["Rio de Janeiro", "Sao Paulo", "Brasilia", "Salvador"]
+    },
+    {
+      "question": "Who is known as the 'Father of Modern Philosophy'?",
+      "category": "Philosophy",
+      "answer": "René Descartes",
+      "choices": ["Immanuel Kant", "René Descartes", "John Locke", "David Hume"]
+    }
+  ]
+}
