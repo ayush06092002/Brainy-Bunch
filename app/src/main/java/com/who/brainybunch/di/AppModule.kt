@@ -1,6 +1,7 @@
 package com.who.brainybunch.di
 
 import com.who.brainybunch.network.QuestionApi
+import com.who.brainybunch.repository.QuestionRepository
 import com.who.brainybunch.utils.Constants
 import dagger.Module
 import dagger.Provides
@@ -13,6 +14,10 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 object AppModule {
+
+    @Singleton
+    @Provides
+    fun providesQuestionRepository(questionApi: QuestionApi) = QuestionRepository(questionApi)
     @Singleton
     @Provides
     fun providesQuestionApi(): QuestionApi {
