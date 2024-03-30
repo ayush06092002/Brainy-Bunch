@@ -72,6 +72,12 @@ dependencies {
     implementation(libs.converter.gson)
     implementation(libs.okhttp)
 
+    //Google Font
+    implementation(libs.androidx.ui.text.google.fonts)
+
+    //App Compat
+    implementation(libs.androidx.appcompat)
+
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
