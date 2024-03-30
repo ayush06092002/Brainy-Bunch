@@ -1,23 +1,26 @@
 package com.who.brainybunch.component
 
-import androidx.appcompat.app.AppCompatDelegate
+import android.content.Context
+import android.widget.Toast
 import androidx.compose.animation.Animatable
 import androidx.compose.animation.core.FastOutSlowInEasing
-import androidx.compose.animation.core.LinearEasing
 import androidx.compose.animation.core.keyframes
-import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults.buttonColors
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.RadioButton
 import androidx.compose.material3.RadioButtonDefaults
@@ -25,13 +28,21 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableDoubleStateOf
+import androidx.compose.runtime.mutableFloatStateOf
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.PathEffect
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -44,16 +55,37 @@ import com.who.brainybunch.utils.fontFamily
 
 @Composable
 fun Questions(viewModel: QuestionsViewModel) {
+    val context = LocalContext.current
     val questions = viewModel.data.value.data?.toMutableList()
-
-//    val questionIndex = remember {
-//
-//    }
-    if(viewModel.data.value.isLoading == true) {
+    val displayedQuestions = remember {
+        mutableSetOf<Int>()
+    }
+    val shuffledQuestions = questions?.filterIndexed { index, _ ->
+        !displayedQuestions.contains(index) // Filter out already displayed questions
+    }?.shuffled()
+    val questionIndex = remember {
+        mutableIntStateOf(0)
+    }
+    if (viewModel.data.value.isLoading == true) {
         CircularProgressIndicator()
     } else {
-        if(questions != null) {
-            QuestionDisplay(question = questions[0])
+        val question = try {
+            shuffledQuestions?.get(questionIndex.intValue)
+        } catch (e: IndexOutOfBoundsException) {
+            null
+        }
+        if (questions != null) {
+            QuestionDisplay(
+                context,
+                question = question!!,
+                viewModel = viewModel
+            ) {
+                displayedQuestions.add(questions.indexOf(question))
+                if (displayedQuestions.size == questions.size) {
+                    Toast.makeText(context, "All questions answered", Toast.LENGTH_SHORT).show()
+                }
+                questionIndex.intValue += 1
+            }
         }
     }
 }
@@ -61,11 +93,18 @@ fun Questions(viewModel: QuestionsViewModel) {
 //@Preview
 @Composable
 fun QuestionDisplay(
+    context: Context,
     question: Quiz,
-//    questionIndex: MutableState<Int>,
-//    viewModel: QuestionsViewModel,
-    onAnswerSelected: (Int) -> Unit = {}
+    viewModel: QuestionsViewModel,
+    onAnswerSelected: (Int) -> Unit
 ) {
+    val selectedOnce = remember {
+        mutableStateOf(false)
+    }
+
+    val currQuesIndex = remember {
+        mutableIntStateOf(0)
+    }
     val choicesState = remember(question) {
         question.choices.toMutableList()
     }
@@ -76,6 +115,14 @@ fun QuestionDisplay(
 
     val correctAnswerState = remember(question) {
         mutableStateOf<Boolean?>(null)
+    }
+
+    val correctAnswers = remember {
+        mutableIntStateOf(0)
+    }
+
+    val wrongAnswers = remember {
+        mutableIntStateOf(0)
     }
 
     val borderColor = remember { Animatable(Color(0xFF000000)) }
@@ -96,7 +143,7 @@ fun QuestionDisplay(
         )
     }
 
-    val upadteAnswerState: (Int) -> Unit = remember(question) {
+    val updateAnswerState: (Int) -> Unit = remember(question) {
         {
             answerState.value = it
             correctAnswerState.value = choicesState[it] == question.answer
@@ -109,10 +156,13 @@ fun QuestionDisplay(
     Surface(
         modifier = Modifier
             .fillMaxSize()
-            .padding(4.dp)
             .background(Color(0xFFFFFFFF))
     ) {
         Column {
+            if(currQuesIndex.intValue >= 3)
+                ShowProgress(score = correctAnswers.intValue,
+                    size = viewModel.data.value.data!!.size
+                    )
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -120,7 +170,7 @@ fun QuestionDisplay(
                 verticalAlignment = Alignment.Top,
                 horizontalArrangement =  Arrangement.Start
             ) {
-                QuestionTracker()
+                QuestionTracker(currNumber = currQuesIndex.intValue + 1, outOf = viewModel.data.value.data!!.size)
             }
             DashedDivider(thickness = 1.dp, modifier = Modifier
                 .fillMaxWidth()
@@ -136,29 +186,54 @@ fun QuestionDisplay(
 
             question.choices.forEachIndexed { index, choiceText ->
                 val isSelected = answerState.value == index
-                val borderColor = if (isSelected) borderColor.value else Color(0xFF000000)
+                val borderColorr = if (isSelected) borderColor.value else Color(0xFF000000)
                 Row(modifier = Modifier
                     .padding(16.dp)
                     .fillMaxWidth()
                     .height(50.dp)
                     .border(
                         width = 1.dp,
-                        color = borderColor,
+                        color = borderColorr,
                         shape = RoundedCornerShape(15.dp)
                     )
+                    .clip(RoundedCornerShape(topStartPercent = 50,
+                        topEndPercent = 50,
+                        bottomEndPercent = 50,
+                        bottomStartPercent = 50))
                     .clickable {
-                        upadteAnswerState(index)
+                        if (selectedOnce.value) {
+                            Toast
+                                .makeText(
+                                    context,
+                                    "You have already selected an answer",
+                                    Toast.LENGTH_SHORT
+                                )
+                                .show()
+                            return@clickable
+                        } else if (!selectedOnce.value) {
+                            selectedOnce.value = true
+                            updateAnswerState(index)
+                        }
                     }) {
                         RadioButton(selected = (
                                                answerState.value == index
                                 ), onClick = {
-                                    upadteAnswerState(index)
+                                    if(selectedOnce.value){
+                                        Toast.makeText(context, "You have already selected an answer", Toast.LENGTH_SHORT).show()
+                                        return@RadioButton
+                                    }else if(!selectedOnce.value){
+                                        selectedOnce.value = true
+                                        updateAnswerState(index)
+                                    }
+
                         }, modifier = Modifier.padding(start = 8.dp),
                             colors = RadioButtonDefaults.colors(
                                 selectedColor =
-                                    if(correctAnswerState.value ==  true) Color(0xFF00FF00) //&& index == answerState.value
-                                    else if(correctAnswerState.value == false) Color(0xFFFF0000)
-                                    else Color(0xFFFFFFFF)
+                                when (correctAnswerState.value) {
+                                    true -> Color(0xFF00FF00) //&& index == answerState.value
+                                    false -> Color(0xFFFF0000)
+                                    else -> Color(0xFFFFFFFF)
+                                }
                             )
                         )
                         Text(
@@ -173,11 +248,37 @@ fun QuestionDisplay(
                 }
             }
 
+            Button(onClick = {
+                if(answerState.value == null) {
+                    Toast.makeText(context, "Please select an answer", Toast.LENGTH_SHORT).show()
+                    return@Button
+                }
+                currQuesIndex.intValue += 1
+                onAnswerSelected(answerState.value!!)
+                             if(correctAnswerState.value == true) {
+                    correctAnswers.intValue += 1
+                } else {
+                    wrongAnswers.intValue += 1
+                }
+                selectedOnce.value = false
+                             },
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(16.dp)
+                    .height(50.dp)
+            ) {
+                Text(
+                    text = "Next",
+                    fontFamily = fontFamily,
+                    style = androidx.compose.ui.text.TextStyle(
+                        fontSize = 16.sp,
+                        fontWeight = FontWeight.Bold
+                    )
+                )
+
+            }
+
         }
-
-
-
-
     }
 }
 
@@ -190,12 +291,12 @@ fun QuestionTracker(
         fontFamily = fontFamily,
         text = "Question $currNumber/",
         style = androidx.compose.ui.text.TextStyle(
-            fontSize = 27.sp,
+            fontSize = 36.sp,
             fontWeight = FontWeight.ExtraBold
         )
     )
     Text(
-        modifier = Modifier.padding(top = 11.dp),
+        modifier = Modifier.padding(top = 22.dp),
         fontFamily = fontFamily,
         text = outOf.toString(),
         style = androidx.compose.ui.text.TextStyle(
@@ -231,3 +332,56 @@ fun DashedDivider(
 
     }
 }
+
+@Preview
+@Composable
+fun ShowProgress(score: Int = 2, size: Int = 58) {
+
+    val gradient = Brush.linearGradient(listOf(Color(0xFFF95075),
+        Color(0xFFBE6BE5)))
+
+
+    val progressFactor by remember {
+        mutableFloatStateOf(score*0.17f)
+    }
+    Row(modifier = Modifier
+        .padding(3.dp)
+        .fillMaxWidth()
+        .height(45.dp)
+        .border(width = 4.dp,
+            brush = Brush.linearGradient(colors = listOf(Color(0xFFE0E0E0), Color(0xFFE0E0E0) )),
+            shape = RoundedCornerShape(34.dp))
+        .clip(RoundedCornerShape(topStartPercent = 50,
+            topEndPercent = 50,
+            bottomEndPercent = 50,
+            bottomStartPercent = 50))
+        .background(Color.Transparent),
+        verticalAlignment = Alignment.CenterVertically) {
+        Button(
+            contentPadding = PaddingValues(1.dp),
+            onClick = { },
+            modifier = Modifier
+                .fillMaxWidth(progressFactor)
+                .background(brush = gradient),
+            enabled = false,
+            elevation = null,
+            colors = buttonColors(
+                containerColor = Color.Transparent,
+
+            )) {
+            Text(text = (score).toString(),
+                modifier = Modifier
+                    .fillMaxHeight(0.87f)
+                    .fillMaxWidth()
+                    .padding(start = 4.dp, top = 8.dp)
+                ,
+                color = Color.White,
+                textAlign = TextAlign.Start)
+
+//
+        }
+
+
+    }
+}
+
