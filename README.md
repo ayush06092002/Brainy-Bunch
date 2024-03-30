@@ -1,8 +1,6 @@
 # Brainy Bunch - Quiz App
-
+<img src = "https://github.com/ayush06092002/Brainy-Bunch/assets/22142132/6996358a-a4d5-4d80-9c10-8d790646665b" width = "200" height = "200">
 Brainy Bunch is a simple quiz app made using Jetpack Compose, a modern toolkit for building native Android UI.
-
-<img src = "https://github.com/ayush06092002/Brainy-Bunch/assets/22142132/6996358a-a4d5-4d80-9c10-8d790646665b" width = "50" height = "50">
 
 ## Overview
 
